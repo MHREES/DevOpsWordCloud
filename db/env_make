@@ -1,6 +1,5 @@
-PORTS = -p 8080:80
+PORTS = -p 7474:7474 -p 7687:7687
 
-VOLUMES = -v /var/log/docker:/var/log
+VOLUMES = -v $$HOME/neo4j/data:/data
 
-ENV = \
-  -e SOME_KEY=SOME_VALUE
+ENV =
