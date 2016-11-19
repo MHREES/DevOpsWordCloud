@@ -1,4 +1,4 @@
-include env_make
+include ../env
 VERSION ?= latest
 
 REPO = neo4j
@@ -8,7 +8,7 @@ INSTANCE = default
 .PHONY: run
 
 run:
-	docker run -d --name $(NAME)-$(INSTANCE) $(PORTS) $(VOLUMES) $(ENV) $(REPO):$(VERSION)
+	docker run -d --name $(NAME)-$(INSTANCE) $(NEO4J_PORTS) $(NEO4J_VOLUMES) $(NEO4J_ENV) $(REPO):$(VERSION)
 
 stop:
 	docker stop $(NAME)-$(INSTANCE)
