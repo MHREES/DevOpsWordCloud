@@ -20,6 +20,17 @@ Copy `env.template` to `env` and populate with these details.
 * Terminate machines when you are finished.
 * Do not create any public machines. (machines should be created on the private subnet and ssh into through the bastion)
 
+#### Port Forwarding
+* to acces the services through your web browser you will need to forward the ports, namely `7474` and `3000`.
+* to forward ports in putty you will need to navigat to `Tunnels` on the menu on the right.
+
+	* Connection
+		* SSH
+			* Tunnels
+
+* `Source port` is the port on your local computer the remote port will be mapped to e.g. `7474`
+* `Destination` is where the remote port is `<remotIpAddress>:<port>`, e.g. `10.0.1.255:7474`
+
 #### Install Docker
 * Update installed packages: `sudo yum update -y`
 * Install docker: `sudo yum install -y docker`
