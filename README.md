@@ -60,6 +60,7 @@ to add your user to the docker group by running the following:
 * `./configure`
 * `make`
 * `sudo make install`
+
 #### Install NPM
 * `git clone https://github.com/isaacs/npm.git`
 * `cd npm`
