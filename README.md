@@ -20,9 +20,17 @@ Copy `env.template` to `env` and populate with these details.
 * Terminate machines when you are finished.
 * Do not create any public machines. (machines should be created on the private subnet and ssh into through the bastion)
 
+### Bastion
+* When you create a new instance on aws it will be (should always be!) on the private subnet. This means you cannot ssh directly into it.
+
+  public--->bastion--->ec2-instance
+  
+* you first need to ssh into the bastion then once in the bastion you can ssh using the .pem file and the following 
+  command: `ssh -i <your-pem-file> ec2-user@<your-instance-private-ip>`
+
 ### Port Forwarding
-* to acces the services through your web browser you will need to forward the ports, namely `7474` and `3000`.
-* to forward ports in putty you will need to navigat to `Tunnels` on the menu on the right.
+* To acces the services through your web browser you will need to forward the ports, namely `7474` and `3000`.
+* To forward ports in putty you will need to navigat to `Tunnels` on the menu on the right.
 
 	* Connection
 		* SSH
