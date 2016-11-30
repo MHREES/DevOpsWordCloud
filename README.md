@@ -23,7 +23,11 @@ Copy `env.template` to `env` and populate with these details.
 ### Bastion
 * When you create a new instance on aws it will be (should always be!) on the private subnet. This means you cannot ssh directly into it.
 
-  public--->bastion--->ec2-instance
+						---<ec2-instance>
+						|
+  <public>---<bastion>----<ec2-instance>
+						|
+						---<ec2-instance>
   
 * you first need to ssh into the bastion then once in the bastion you can ssh using the .pem file and the following 
   command: `ssh -i <your-pem-file> ec2-user@<your-instance-private-ip>`
