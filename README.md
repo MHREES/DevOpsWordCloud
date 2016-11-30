@@ -31,6 +31,10 @@ Copy `env.template` to `env` and populate with these details.
 * `Source port` is the port on your local computer the remote port will be mapped to e.g. `7474`
 * `Destination` is where the remote port is `<remotIpAddress>:<port>`, e.g. `10.0.1.255:7474`
 
+### Install git
+* `sudo yum install git`
+* `git clone https://github.com/CapgeminiDataScience/devops-training-sample-project.git`
+
 ### Install Docker
 * Update installed packages: `sudo yum update -y`
 * Install docker: `sudo yum install -y docker`
@@ -54,12 +58,15 @@ to add your user to the docker group by running the following:
 #### Install Nodejs
 * `sudo yum install gcc-c++ make`
 * `sudo yum install openssl-devel`
-* `sudo yum install git`
 * `git clone git://github.com/nodejs/node.git`
 * `cd node`
 * `./configure`
 * `make`
 * `sudo make install`
+* `sudo su`
+* `vi /etc/sudoers`
+  
+  look for this line `Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin` and add this to the end `:/usr/local/bin`
 
 #### Install NPM
 * `git clone https://github.com/isaacs/npm.git`
@@ -68,6 +75,7 @@ to add your user to the docker group by running the following:
 
 ### Run `Make` in `web`
 * `cd devops-training-sample-project\analytics`
+* `npm install`
 * `make`
 
 #### Visit http://localhost:3000
