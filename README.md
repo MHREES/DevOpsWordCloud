@@ -104,7 +104,7 @@ The VM is configured for easy ssh with port forwarding
 ### Setup
 1. Download VirtualBox from http://download.virtualbox.org/virtualbox/5.1.10/VirtualBox-5.1.10-112026-Win.exe
 2. Install
-3. Download the centos.ova file
+3. Download the centos.ova file ( https://drive.google.com/file/d/0B6DGkdfZ1u20WW5HaENNVFRFaUE/view?usp=sharing )
 4. Start VirtualBox
   -> Go to File -> Import Appliance -> select centos.ova
   -> check "Reinitialize the Mac address" option and click import
