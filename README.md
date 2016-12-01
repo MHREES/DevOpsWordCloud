@@ -19,6 +19,8 @@ Copy `env.template` to `env` and populate with these details.
 * I would recommend running a `t2.medium` machine.
 * Terminate machines when you are finished.
 * Do not create any public machines. (machines should be created on the private subnet and ssh into through the bastion)
+* check in the adress bar that it starts with eu-west-1 if not click in the upper right between your username and support and change the
+  region to Ireland
 
 ### Bastion
 * When you create a new instance on aws it will be (should always be!) on the private subnet. This means you cannot ssh directly into it.
