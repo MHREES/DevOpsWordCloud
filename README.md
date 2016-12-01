@@ -140,33 +140,33 @@ to get both on the VM. The easiest way is to copy-paste them.
 
 17. If your create a new private instance you will need to change the env file accordingly and run again make
 18. To get the service running follow the guide above or type the following command one after another (this is the exact history I have ran)
-```yum update -y
-yum install -y docker
-yum install -y git
-git clone https://github.com/CapgeminiDataScience/devops-training-sample-project.git
-cd devops-training-sample-project/
-service docker start
-mv env.template env
+`yum update -y`
+`yum install -y docker`
+`yum install -y git`
+`git clone https://github.com/CapgeminiDataScience/devops-training-sample-project.git`
+`cd devops-training-sample-project/`
+`service docker start`
+`mv env.template env`
 vim env -> press "I" -> TWITTER_BEARER= paste your twitter token; and change NEO4J_PASSWORD=password
 -> Press ESC -> type `:wq` -> Press Enter
-cd db/
-make
+`cd db/`
+`make`
 go to localhost:7474 login using neo4j:neo4j and change the password to "password"
 
-cd ../analytics/
-pip install -y py2neo
-make
+`cd ../analytics/`
+`pip install -y py2neo`
+`make`
 Press CTR+Z
-bg
+`bg`
 
-cd devops-training-sample-project/web
-curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
-yum -y install nodejs
-git clone https://github.com/isaacs/npm.git
-cd npm
-make install
-cd ..
-npm install```
+`cd devops-training-sample-project/web`
+`curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -`
+`yum -y install nodejs`
+`git clone https://github.com/isaacs/npm.git`
+`cd npm`
+`make install`
+`cd ..`
+`npm install`
 
 go to localhost:3000
 
