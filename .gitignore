@@ -1,6 +1,6 @@
 # Local environmental variables
 env
-
+web/npm
 # Logs
 web/logs
 *.log
