@@ -90,7 +90,7 @@ to add your user to the docker group by running the following:
 * `sudo make install`
 
 ### Run `Make` in `web`
-* `cd devops-training-sample-project\analytics`
+* `cd devops-training-sample-project\web`
 * `npm install`
 * `make`
 
