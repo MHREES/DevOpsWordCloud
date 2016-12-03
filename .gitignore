@@ -28,6 +28,8 @@ web/build/Release
 # Dependency directory
 # https://docs.npmjs.com/cli/shrinkwrap#caveats
 web/node_modules
+web/node
+web/npm
 
 # Debug log from npm
 npm-debug.log

@@ -4,11 +4,12 @@ VERSION ?= latest
 REPO = neo4j
 NAME = neo4j
 INSTANCE = default
+UN_NEO4J_PORTS = $(patsubst "%",%,$(NEO4J_PORTS))
 
 .PHONY: run
 
 run:
-	docker run -d --name $(NAME)-$(INSTANCE) $(NEO4J_PORTS) $(NEO4J_VOLUMES) $(NEO4J_ENV) $(REPO):$(VERSION)
+	docker run -d --name $(NAME)-$(INSTANCE) $(UN_NEO4J_PORTS) $(patsubst "%",%,$(NEO4J_VOLUMES)) $(NEO4J_ENV) $(REPO):$(VERSION)
 
 stop:
 	docker stop $(NAME)-$(INSTANCE)
