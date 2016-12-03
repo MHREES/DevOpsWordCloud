@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  var driver = neo4j.driver("bolt://localhost", neo4j.auth.basic("neo4j", process.env.NEO4J_PASSWORD));
+  var driver = neo4j.driver("bolt://"+process.env.NEO4J_HOST, neo4j.auth.basic("neo4j", process.env.NEO4J_PASSWORD));
   var session = driver.session();
   session
     .run( "MATCH (n:Hashtag)-[r]-() RETURN n.name, count(r) as rel_count ORDER BY rel_count DESC LIMIT 50" )

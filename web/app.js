@@ -12,7 +12,7 @@ var tweets = require('./routes/tweets');
 
 var app = express();
 
-env(__dirname + '/../env');
+// env(__dirname + '/../env');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
