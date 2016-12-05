@@ -177,3 +177,14 @@ Press CTR+Z
 
 go to localhost:3000
 
+-----------------------------------------------------------------------
+
+## Troubleshooting
+
+### Error during npm `bash: npm: command not found`
+1. Try and remove previoulsy cloned `node` and 'npm`.
+2. Upgrade py2neo- use `sudo pip install py2neo`.
+3. Continue from `node` and `npm` steps. 
+
+This shoudl resolve the `command not found` error. 
+
