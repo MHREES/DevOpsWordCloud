@@ -31,3 +31,5 @@ web/node_modules
 
 # Debug log from npm
 npm-debug.log
+
+secrets.yml
