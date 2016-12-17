@@ -7,6 +7,6 @@ publish:
     tag: latest
     file: web/Dockerfile
     insecure: false
-    storage_driver: vfs
+    storage_driver: overlayfs
     environment:
       - DOCKER_LAUNCH_DEBUG=true
