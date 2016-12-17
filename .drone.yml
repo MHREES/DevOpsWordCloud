@@ -16,4 +16,4 @@ services:
     privileged: true
     command:
       - "-s"
-      - "overlay"
+      - "vfs"
