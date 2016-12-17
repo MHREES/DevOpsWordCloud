@@ -5,7 +5,8 @@ pipeline:
     environment:
       - DOCKER_HOST=tcp://127.0.0.1:2375
     commands:
-      - cd web; docker build -f Dockerfile -t lewisoaten/devops-web:${DRONE_COMMIT_SHA} .
+      - cd web
+      - docker build -f Dockerfile -t lewisoaten/devops-web:${DRONE_COMMIT_SHA} .
     when:
       event: push
 
