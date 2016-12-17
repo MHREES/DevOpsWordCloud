@@ -5,6 +5,7 @@ publish:
     email: $$DOCKER_HUB_EMAIL
     repo: lewisoaten/devops-web
     tag: latest
+    file: web/Dockerfile
     contenxt: web
     insecure: false
     storage_driver: vfs
