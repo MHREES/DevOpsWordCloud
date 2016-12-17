@@ -1,5 +1,5 @@
 pipeline:
-  build:
+  my-build:
     privileged: true
     image: docker:1.11
     environment:
