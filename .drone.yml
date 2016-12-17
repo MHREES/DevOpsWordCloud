@@ -1,5 +1,5 @@
-pipeline:
-  my-build:
+build:
+  web:
     privileged: true
     image: docker:1.11
     environment:
