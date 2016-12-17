@@ -7,8 +7,15 @@ build:
     commands:
       - cd web
       - docker build -f Dockerfile -t lewisoaten/devops-web:${DRONE_COMMIT} .
-    when:
-      event: push
+      - docker save -o devops-web-${DRONE_COMMIT}.tar lewisoaten/devops-web:${DRONE_COMMIT}
+
+deploy:
+  sftp:
+    host: ip-10-0-2-10.eu-west-1.compute.internal
+    port: 22
+    username: ubuntu
+    files:
+      - devops-web-${DRONE_COMMIT}.tar
 
 compose:
   dind:
