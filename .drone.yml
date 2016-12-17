@@ -8,7 +8,6 @@ pipeline:
       - cd web; docker build -f Dockerfile -t lewisoaten/devops-web:${DRONE_COMMIT_SHA} .
     when:
       event: push
-      branch: *
 
 services:
   dind:
