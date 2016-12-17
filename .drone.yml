@@ -10,15 +10,6 @@ build:
       - docker save -o devops-web-latest.tar web:latest
 
 deploy:
-  web-test:
-    privileged: true
-    image: docker:1.11
-    environment:
-      - DOCKER_HOST=tcp://127.0.0.1:2375
-    commands:
-      - pwd
-      - ls -lha
-
   sftp:
     host: ip-10-0-2-10.eu-west-1.compute.internal
     port: 22
