@@ -1,11 +1,19 @@
-publish:
-  docker:
-    username: $$DOCKER_HUB_USERNAME
-    password: $$DOCKER_HUB_PASSWORD
-    email: $$DOCKER_HUB_EMAIL
-    repo: lewisoaten/devops-web
-    tag: latest
-    file: web/Dockerfile
-    contenxt: web
-    insecure: false
-    storage_driver: vfs
+pipeline:
+  build:
+    privileged: true
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - cd web; docker build -f Dockerfile -t lewisoaten/devops-web:${DRONE_COMMIT_SHA} .
+    when:
+      event: push
+      branch: master
+
+services:
+  dind:
+    image: docker:1.11-dind
+    privileged: true
+    command:
+      - "-s"
+      - "overlay"
