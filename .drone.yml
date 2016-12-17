@@ -52,7 +52,7 @@ deploy:
     user: ubuntu
     commands:
       - sudo docker load --input /home/ubuntu/web/devops-web-latest.tar
-      - sudo docker load --input /home/ubuntu/web/devops-python-latest.tar
+      - sudo docker load --input /home/ubuntu/analytics/devops-python-latest.tar
       - cd db
       - sudo make stop
       - sudo make rm
