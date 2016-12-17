@@ -6,17 +6,36 @@ build:
       - DOCKER_HOST=tcp://127.0.0.1:2375
     commands:
       - cd web
-      - docker build -f Dockerfile -t lewisoaten/devops-web:${DRONE_COMMIT} .
-      - cd ../
-      - docker save -o devops-web-${DRONE_COMMIT}.tar lewisoaten/devops-web:${DRONE_COMMIT}
+      - make build
+      - docker save -o devops-web-latest.tar web:latest
 
 deploy:
+  web-test:
+    privileged: true
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - pwd
+      - ls -lha
+
   sftp:
     host: ip-10-0-2-10.eu-west-1.compute.internal
     port: 22
     username: ubuntu
+    destination_path: /home/ubuntu/
     files:
-      - devops-web-${DRONE_COMMIT}.tar
+      - web/devops-web-latest.tar
+
+  ssh:
+    host: ip-10-0-2-10.eu-west-1.compute.internal
+    port: 22
+    user: ubuntu
+    commands:
+      - sudo docker load --input /home/ubuntu/devops-web-latest.tar
+      - make stop
+      - make rm
+      - make run
 
 compose:
   dind:
