@@ -1,4 +1,4 @@
-build:
+publish:
   docker:
     username: $$DOCKER_HUB_USERNAME
     password: $$DOCKER_HUB_PASSWORD
