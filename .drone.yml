@@ -9,24 +9,62 @@ build:
       - docker build -t web:latest .
       - docker save -o devops-web-latest.tar web:latest
 
+  analytics:
+    privileged: true
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - cd analytics
+      - docker build -t python:latest .
+      - docker save -o devops-python-latest.tar python:latest
+
 deploy:
   sftp:
     host: ip-10-0-2-10.eu-west-1.compute.internal
     port: 22
     username: ubuntu
-    destination_path: /home/ubuntu/
+    destination_path: /home/ubuntu/web/
     files:
       - web/devops-web-latest.tar
+      - web/Makefile
+
+  sftp:
+    host: ip-10-0-2-10.eu-west-1.compute.internal
+    port: 22
+    username: ubuntu
+    destination_path: /home/ubuntu/analytics/
+    files:
+      - analytics/devops-analytics-latest.tar
+      - analytics/Makefile
+
+  sftp:
+    host: ip-10-0-2-10.eu-west-1.compute.internal
+    port: 22
+    username: ubuntu
+    destination_path: /home/ubuntu/db/
+    files:
+      - analytics/Makefile
 
   ssh:
     host: ip-10-0-2-10.eu-west-1.compute.internal
     port: 22
     user: ubuntu
     commands:
-      - sudo docker load --input /home/ubuntu/devops-web-latest.tar
-      - sudo docker stop web-default
-      - sudo docker rm -v web-default
-      - sudo docker run -d --name web-default -p 3000:3000 -e PORT=3000 web:latest
+      - sudo docker load --input /home/ubuntu/web/devops-web-latest.tar
+      - sudo docker load --input /home/ubuntu/web/devops-analytics-latest.tar
+      - cd db
+      - sudo make stop
+      - sudo make rm
+      - sudo make run
+      - cd ../web
+      - sudo make stop
+      - sudo make rm
+      - sudo make run
+      - cd ../analytics
+      - sudo make stop
+      - sudo make rm
+      - sudo make run
 
 compose:
   dind:
