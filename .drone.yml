@@ -7,5 +7,6 @@ publish:
     tag: latest
     file: web/Dockerfile
     insecure: false
+    storage_driver: vfs
     environment:
       - DOCKER_LAUNCH_DEBUG=true
