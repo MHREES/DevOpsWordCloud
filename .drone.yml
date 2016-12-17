@@ -10,7 +10,7 @@ build:
     when:
       event: push
 
-services:
+compose:
   dind:
     image: docker:1.11-dind
     privileged: true
