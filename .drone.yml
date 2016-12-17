@@ -7,6 +7,7 @@ build:
     commands:
       - cd web
       - docker build -f Dockerfile -t lewisoaten/devops-web:${DRONE_COMMIT} .
+      - cd ../
       - docker save -o devops-web-${DRONE_COMMIT}.tar lewisoaten/devops-web:${DRONE_COMMIT}
 
 deploy:
