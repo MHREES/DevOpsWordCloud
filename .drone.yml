@@ -35,7 +35,7 @@ deploy:
     username: ubuntu
     destination_path: /home/ubuntu/analytics/
     files:
-      - analytics/devops-analytics-latest.tar
+      - analytics/devops-python-latest.tar
       - analytics/Makefile
 
   sftp:
@@ -44,7 +44,7 @@ deploy:
     username: ubuntu
     destination_path: /home/ubuntu/db/
     files:
-      - analytics/Makefile
+      - db/Makefile
 
   ssh:
     host: ip-10-0-2-10.eu-west-1.compute.internal
@@ -52,7 +52,7 @@ deploy:
     user: ubuntu
     commands:
       - sudo docker load --input /home/ubuntu/web/devops-web-latest.tar
-      - sudo docker load --input /home/ubuntu/web/devops-analytics-latest.tar
+      - sudo docker load --input /home/ubuntu/web/devops-python-latest.tar
       - cd db
       - sudo make stop
       - sudo make rm
