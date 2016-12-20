@@ -1,7 +1,7 @@
 build:
   web:
     privileged: true
-    image: docker:1.11
+    image: centos:latest
     environment:
       - DOCKER_HOST=tcp://127.0.0.1:2375
     commands:
