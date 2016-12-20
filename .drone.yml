@@ -6,5 +6,12 @@ build:
       - DOCKER_HOST=tcp://127.0.0.1:2375
     commands:
       - cd web
-      - sudo docker build -t web:latest .
-      - sudo docker save -o devops-web-latest.tar web:latest
+      - docker build -t web:latest .
+      - docker save -o devops-web-latest.tar web:latest
+services:
+  dind:
+    image: docker:1.11-dind
+    privileged: true
+    command:
+      - "-s"
+      - "overlay"
