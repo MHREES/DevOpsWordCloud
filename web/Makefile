@@ -1,8 +1,24 @@
 include ../env
+export $(shell sed 's/=.*//' ../env)
+VERSION ?= latest
+
+REPO = web
+NAME = web
+INSTANCE = default
 
 .PHONY: run
 
-run:
-	npm start
+build:
+	docker build -t $(REPO):$(VERSION) .
 
-default: run
+run:
+	docker run -d --name $(NAME)-$(INSTANCE) $(WEB_PORTS) $(WEB_VOLUMES) $(WEB_ENV) $(REPO):$(VERSION)
+
+stop:
+	docker stop $(NAME)-$(INSTANCE)
+
+start:
+	docker start $(NAME)-$(INSTANCE)
+
+rm:
+	docker rm -v $(NAME)-$(INSTANCE)

@@ -24,7 +24,7 @@ deploy:
     host: 10.0.1.32
     port: 22
     username: ec2-user
-    destination_path: /home/ec2-user/deployment
+    destination_path: /home/ec2-user/deployment/web
     files:
       - web/devops-web-latest.tar
       - web/Makefile
@@ -33,7 +33,7 @@ deploy:
     host: 10.0.1.32
     port: 22
     username: ec2-user
-    destination_path: /home/ec2-user/deployment
+    destination_path: /home/ec2-user/deployment/analytics
     files:
       - analytics/devops-python-latest.tar
       - analytics/Makefile
@@ -42,10 +42,27 @@ deploy:
     host: 10.0.1.32
     port: 22
     username: ec2-user
-    destination_path: /home/ec2-user/deployment
+    destination_path: /home/ec2-user/deployment/db
     files:
       - db/Makefile
-
+ssh:
+    port: 22
+    user: ec2-user
+    commands:
+      - sudo docker load --input /home/ec2-user/deployment/web/devops-web-latest.tar
+      - sudo docker load --input /home/ec2-user/deployment/devops-python-latest.tar
+      - cd db
+      - sudo make stop
+      - sudo make rm
+      - sudo make run
+      - cd ../web
+      - sudo make stop
+      - sudo make rm
+      - sudo make run
+      - cd ../analytics
+      - sudo make stop
+      - sudo make rm
+      - sudo make run
 
 compose:
   dind:
