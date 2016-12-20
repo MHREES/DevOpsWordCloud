@@ -1,10 +1,10 @@
 build:
   web:
     privileged: true
-    image: centos:latest
+    image: docker:1.11
     environment:
       - DOCKER_HOST=tcp://127.0.0.1:2375
     commands:
       - cd web
-      - docker build -t web:latest .
-      - docker save -o devops-web-latest.tar web:latest
+      - sudo docker build -t web:latest .
+      - sudo docker save -o devops-web-latest.tar web:latest
