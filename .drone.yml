@@ -8,10 +8,11 @@ build:
       - cd web
       - docker build -t web:latest .
       - docker save -o devops-web-latest.tar web:latest
-services:
+
+compose:
   dind:
     image: docker:1.11-dind
     privileged: true
     command:
       - "-s"
-      - "overlay"
+      - "vfs"
