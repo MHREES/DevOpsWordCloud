@@ -9,6 +9,44 @@ build:
       - docker build -t web:latest .
       - docker save -o devops-web-latest.tar web:latest
 
+  analytics:
+    privileged: true
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - cd analytics
+      - docker build -t python:latest .
+      - docker save -o devops-python-latest.tar python:latest
+
+deploy:
+  sftp:
+    host: 10.0.1.32
+    port: 22
+    username: ec2-user
+    destination_path: /home/ec2-user/deployment
+    files:
+      - web/devops-web-latest.tar
+      - web/Makefile
+
+  sftp:
+    host: 10.0.1.32
+    port: 22
+    username: ec2-user
+    destination_path: /home/ec2-user/deployment
+    files:
+      - analytics/devops-python-latest.tar
+      - analytics/Makefile
+
+  sftp:
+    host: 10.0.1.32
+    port: 22
+    username: ec2-user
+    destination_path: /home/ec2-user/deployment
+    files:
+      - db/Makefile
+
+
 compose:
   dind:
     image: docker:1.11-dind
