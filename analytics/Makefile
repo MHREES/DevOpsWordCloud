@@ -12,7 +12,7 @@ build:
 	docker build -t $(REPO):$(VERSION) .
 
 run:
-	docker run -d --name $(NAME)-$(INSTANCE) $(PYTHON_PORTS) $(PYTHON_VOLUMES) $(PYTHON_ENV) $(REPO):$(VERSION)
+	docker run --net=host -d --name $(NAME)-$(INSTANCE) $(PYTHON_PORTS) $(PYTHON_VOLUMES) $(PYTHON_ENV) $(REPO):$(VERSION)
 
 stop:
 	docker stop $(NAME)-$(INSTANCE)

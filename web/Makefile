@@ -12,7 +12,7 @@ build:
 	docker build -t $(REPO):$(VERSION) .
 
 run:
-	docker run -d --name $(NAME)-$(INSTANCE) $(WEB_PORTS) $(WEB_VOLUMES) $(WEB_ENV) $(REPO):$(VERSION)
+	docker run -d --net=host --name $(NAME)-$(INSTANCE) $(WEB_PORTS) $(WEB_VOLUMES) $(WEB_ENV) $(REPO):$(VERSION)
 
 stop:
 	docker stop $(NAME)-$(INSTANCE)
