@@ -21,7 +21,7 @@ build:
 
 deploy:
   sftp:
-    host: 10.0.1.32
+    host: 10.0.1.19
     port: 22
     username: ec2-user
     destination_path: /home/ec2-user/deployment/web
@@ -30,7 +30,7 @@ deploy:
       - web/Makefile
 
   sftp:
-    host: 10.0.1.32
+    host: 10.0.1.19
     port: 22
     username: ec2-user
     destination_path: /home/ec2-user/deployment/analytics
@@ -39,7 +39,7 @@ deploy:
       - analytics/Makefile
 
   sftp:
-    host: 10.0.1.32
+    host: 10.0.1.19
     port: 22
     username: ec2-user
     destination_path: /home/ec2-user/deployment/db
