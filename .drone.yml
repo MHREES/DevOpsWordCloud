@@ -1,0 +1,73 @@
+build:
+  web:
+    privileged: true
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - cd web
+      - docker build -t web:latest .
+      - docker save -o devops-web-latest.tar web:latest
+
+  analytics:
+    privileged: true
+    image: docker:1.11
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+    commands:
+      - cd analytics
+      - docker build -t python:latest .
+      - docker save -o devops-python-latest.tar python:latest
+
+deploy:
+  sftp:
+    host: 10.0.1.32
+    port: 22
+    username: ec2-user
+    destination_path: /home/ec2-user/deployment/web
+    files:
+      - web/devops-web-latest.tar
+      - web/Makefile
+
+  sftp:
+    host: 10.0.1.32
+    port: 22
+    username: ec2-user
+    destination_path: /home/ec2-user/deployment/analytics
+    files:
+      - analytics/devops-python-latest.tar
+      - analytics/Makefile
+
+  sftp:
+    host: 10.0.1.32
+    port: 22
+    username: ec2-user
+    destination_path: /home/ec2-user/deployment/db
+    files:
+      - db/Makefile
+ssh:
+    port: 22
+    user: ec2-user
+    commands:
+      - sudo docker load --input /home/ec2-user/deployment/web/devops-web-latest.tar
+      - sudo docker load --input /home/ec2-user/deployment/devops-python-latest.tar
+      - cd db
+      - sudo make stop
+      - sudo make rm
+      - sudo make run
+      - cd ../web
+      - sudo make stop
+      - sudo make rm
+      - sudo make run
+      - cd ../analytics
+      - sudo make stop
+      - sudo make rm
+      - sudo make run
+
+compose:
+  dind:
+    image: docker:1.11-dind
+    privileged: true
+    command:
+      - "-s"
+      - "vfs"
