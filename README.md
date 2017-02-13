@@ -39,7 +39,7 @@ Copy `env.template` to `env` and populate with these details.
   command: `ssh -i <your-pem-file> ec2-user@<your-instance-private-ip>`
 
 ### Port Forwarding
-* To acces the services through your web browser you will need to forward the ports, namely `7474` and `3000`.
+* To acces the services through your web browser you will need to forward the ports, namely `7474`, `7687` and `3000`.
 * To forward ports in putty you will need to navigat to `Tunnels` on the menu on the right.
 
 	* Connection
