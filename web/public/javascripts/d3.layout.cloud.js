@@ -210,7 +210,7 @@ function cloudText(d) {
 }
 
 function cloudFont() {
-  return "serif";
+  return "impact";
 }
 
 function cloudFontNormal() {
